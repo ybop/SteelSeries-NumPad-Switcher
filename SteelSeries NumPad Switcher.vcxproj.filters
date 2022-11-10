@@ -39,9 +39,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="AddTable.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="dial-pad.ico">
       <Filter>Resource Files</Filter>
     </Image>
