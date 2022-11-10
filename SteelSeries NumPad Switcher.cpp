@@ -56,7 +56,6 @@ namespace {
         http::Request request{ getAddress() + "/bind_game_event" };
         const std::string body = "{\"game\": \"TEST_GAME\",\"event\": \"HEALTH\",\"handlers\": [{\"device-type\": \"rgb-per-key-zones\",\"custom-zone-keys\": [83,89,90,91,92,93,94,95,96,97,98,99],\"mode\": \"color\",\"color\": [{\"low\": 0,\"high\": 0,\"color\": {\"red\": 0,\"green\": 0,\"blue\": 255}},{\"low\": 1,\"high\": 1,\"color\": {\"red\": 0,\"green\": 255,\"blue\": 0}}]}]}";
         const auto response = request.send("POST", body, { {"Content-Type", "application/json"} });
-
     }
 
     static void stopGame()
@@ -65,10 +64,7 @@ namespace {
         const std::string body{ "{\"game\": \"TEST_GAME\"}" };
         const auto response = request.send("POST", body, { {"Content-Type", "application/json"} });
     }
-    void setNotifyIcon(HWND hWnd)
-    {
 
-    }
     NOTIFYICONDATA getNid(HWND hWnd)
     {
         NOTIFYICONDATA niData{ sizeof(NOTIFYICONDATA) };
@@ -146,7 +142,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     
     default: return DefWindowProc(hWnd, uMsg, wParam, lParam);
     }
-
     return 0;
 }
 
