@@ -2,9 +2,8 @@
 // Microsoft Visual C++ generated include file.
 // Used by SteelSeries NumPad Switcher.rc
 //
-#define IDI_ICON1                       103
-#define IDI_ICON2                       104
-#define IDI_ICON3                       105
+
+#define IDI_ICON1                       101
 
 // Next default values for new objects
 // 
