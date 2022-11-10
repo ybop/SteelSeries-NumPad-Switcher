@@ -75,7 +75,7 @@ namespace {
         niData.uID = 1;
         niData.hWnd = hWnd;
         niData.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
-        niData.hIcon = LoadIcon(gInstance, MAKEINTRESOURCE(IDI_ICON3));
+        niData.hIcon = LoadIcon(gInstance, MAKEINTRESOURCE(IDI_ICON1));
         strcpy(niData.szTip, "SteelSeries NumPad Switcher");
         niData.uCallbackMessage = WM_USER + 1;
 
