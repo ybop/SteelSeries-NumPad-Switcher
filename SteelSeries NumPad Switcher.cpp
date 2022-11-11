@@ -10,7 +10,6 @@
 #include <Windows.h>
 #include <fstream>
 #include "HTTPRequest.hpp"
-#include "timercpp.h"
 #include "shellapi.h"
 #include "resource.h"
 
@@ -33,7 +32,7 @@ namespace {
         return uri;
     }
 
-    // https://gist.github.com/MightyPork/6da26e382a7ad91b5496ee55fdc73db2
+    // https://gist.github.com/MightyPork/6da26e382a7ad91b5496ee55fdc73db2    
 
     static void watchdog()
     {
@@ -72,8 +71,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE:
     {
+        bindEvent();
+        setNumLockColor();
         Shell_NotifyIcon(NIM_ADD, &nid);
         RegisterHotKey(hWnd, 1, MOD_NOREPEAT, VK_NUMLOCK);
+        SetTimer(hWnd, 1, 12000, NULL);
         break;
     }
 
@@ -83,6 +85,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         Shell_NotifyIcon(NIM_DELETE, &nid);
         UnregisterHotKey(hWnd, 1);
         DestroyIcon(nid.hIcon);
+        KillTimer(hWnd, 1);
         PostQuitMessage(0);
         break;
     }
@@ -97,6 +100,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         }
         break;
     }
+    case WM_TIMER:
+        watchdog();
+        break;
 
     case WM_HOTKEY:
         setNumLockColor();
@@ -136,11 +142,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         RegisterClassEx(&wx);
 
         CreateWindowEx(0, "NUMPADSWITCHER", "", 0, 0, 0, 0, 0, HWND_MESSAGE, NULL, NULL, NULL);
-
-        bindEvent();
-        setNumLockColor();
-
-        Timer t; t.setInterval([&]() { watchdog(); }, 12000);
 
         MSG msg{ 0 };
         while (GetMessage(&msg, NULL, 0, 0) != 0) {

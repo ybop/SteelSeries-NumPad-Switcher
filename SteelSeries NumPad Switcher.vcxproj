@@ -138,7 +138,6 @@
   <ItemGroup>
     <ClInclude Include="HTTPRequest.hpp" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="timercpp.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
